@@ -7,6 +7,8 @@ while(nCards%2 != 0 || nCards < 4 || nCards > 14){
 let cardsList = ['img/cards/bobrossparrot.gif', 'img/cards/explodyparrot.gif', 'img/cards/fiestaparrot.gif', 'img/cards/metalparrot.gif', 'img/cards/revertitparrot.gif', 'img/cards/tripletsparrot.gif', 'img/cards/unicornparrot.gif']
 console.log(cardsList)
 
+let turnControl = 0;
+
 function draftGame(addHide, removeHide){
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(removeHide).classList.remove("hide");
@@ -30,10 +32,10 @@ function createCardsDeck(draft){
         for(let j=0; j<2; j++){
             cardsHtmlList.push(`
             <div class='card'>
-                <div class='cardBackside'>
+                <div class='cardBackside card-side' onclick='flipCard(this)'>
                     <img src='img/front.png'>
                 </div>
-                <div class='cardFrontside hide'>
+                <div class='cardFrontside card-side'>
                     <img src='${imgSrc}'>
                 </div>
             </div>`)
@@ -55,6 +57,19 @@ function mountBoard(cardsHtmlList){
     document.querySelector('.board').innerHTML = boardHtml
 }
 
+function flipCard(choice){
+    console.log(choice)
+    clickedCard = choice.parentNode
+    console.log(clickedCard)
+
+    clickedCard.querySelector('.cardBackside').classList.add('flip-backside')
+    clickedCard.querySelector('.cardFrontside').classList.add('flip-frontside')
+}
+
+function unflipCard(){
+    return
+}
+
 function shuffleArray(myArray){
     for (i = myArray.length -1; i > 0; i--) {
         j = Math.floor(Math.random() * i)
@@ -65,3 +80,4 @@ function shuffleArray(myArray){
       
       return myArray;
 }
+

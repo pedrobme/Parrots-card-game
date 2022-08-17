@@ -5,29 +5,52 @@ body{
 .hide{
     display:None;
 }
+
 .card{
+    width:117px;
+    height: 146px;
+    margin:34px;
+    position:relative;
+}
+
+.card-side{
     display:flex;
     justify-content: center;
     align-items: center;
-    width:117px;
-    height: 146px;
+    position: absolute;
     background-color: #A7E9AF;
-    margin:34px;
-}
-.cardBackside{
-    width:100px;
-    height: 100px;
+    border: 2px solid #5c8160;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
 
 .cardBackside img{
-    width:100%;
-}
-
-.cardFrontside{
-    width:100px;
+    width: 100px;
     height: 100px;
 }
 
+.cardFrontside {
+    transform: rotateY(180deg);
+}
+
 .cardFrontside img{
-    width: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.board{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.flip-backside{
+    transform: rotateY(-180deg);
+}
+
+.flip-frontside{
+    transform: rotateY(0deg);
 }
