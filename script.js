@@ -9,6 +9,10 @@ console.log(cardsList)
 
 let turnControl = 0;
 
+let firstChoice;
+
+let secondChoice
+
 function draftGame(addHide, removeHide){
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(removeHide).classList.remove("hide");
@@ -31,12 +35,12 @@ function createCardsDeck(draft){
 
         for(let j=0; j<2; j++){
             cardsHtmlList.push(`
-            <div class='card'>
-                <div class='cardBackside card-side' onclick='flipCard(this)'>
-                    <img src='img/front.png'>
-                </div>
-                <div class='cardFrontside card-side'>
+            <div class='card' onclick='turn(this)'>
+                <div class='card-side back-side'>
                     <img src='${imgSrc}'>
+                </div>
+                <div class='card-side front-side'>
+                    <img src='img/front.png'>
                 </div>
             </div>`)
         }
@@ -58,18 +62,44 @@ function mountBoard(cardsHtmlList){
 }
 
 function flipCard(choice){
-    console.log(choice)
-    clickedCard = choice.parentNode
-    console.log(clickedCard)
-
-    clickedCard.querySelector('.cardBackside').classList.add('flip-backside')
-    clickedCard.querySelector('.cardFrontside').classList.add('flip-frontside')
+    console.log(choice);
+    choice.classList.toggle("flip");
 }
 
-function unflipCard(){
-    return
+function turn(choice){
+    if (turnControl === 0 && choice.classList.contains("flip") === false){
+        flipCard(choice);
+        turnControl++;
+        firstChoice = choice;
+    }
+    else if(turnControl === 1 && choice.classList.contains("flip") === false){
+        flipCard(choice);
+        turnControl++;
+        secondChoice = choice;
+        setTimeout(verifyGuess, 1000);
+    }
+
+    else{
+        return
+    }
 }
 
+function verifyGuess(){
+    turnControl = 0;
+    if(firstChoice.innerHTML === secondChoice.innerHTML){
+        return;
+    }
+
+    else{
+    flipCard(firstChoice);
+    flipCard(secondChoice);
+    }
+
+    firstChoice = null;
+    secondChoice = null;
+}
+
+//peguei na internet, randomizador de array
 function shuffleArray(myArray){
     for (i = myArray.length -1; i > 0; i--) {
         j = Math.floor(Math.random() * i)
@@ -80,4 +110,3 @@ function shuffleArray(myArray){
       
       return myArray;
 }
-
