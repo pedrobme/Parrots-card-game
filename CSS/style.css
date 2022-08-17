@@ -2,13 +2,44 @@ body{
     background-color: #EEF9BF;
 }
 
-.hide{
-    display:None;
-}
 
 h1{
-    width: 500px;
-    height: 250px;
+    font-size: 80px;
+    text-align: center;
+    font-family: 'Silkscreen', cursive;
+}
+
+.initial-screen{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards-samples{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    overflow-x:hidden;
+    margin-bottom:30px;
+}
+.cards-samples > img{
+    width:80px;
+    height: 80px;
+}
+
+.start-game{
+    width: 150px;
+    height: 100px;
+    background-color: green;
+    color:white
+    
+}
+
+.start-game:hover{
+    background-color: white;
+    color:green;
+    cursor:pointer;
 }
 
 .card{
@@ -37,6 +68,11 @@ h1{
 
 .front-side{
     backface-visibility: hidden;
+    cursor:pointer;
+}
+
+.front-side:hover{
+    filter: brightness(110%)
 }
 
 .board{
@@ -45,6 +81,39 @@ h1{
     justify-content: space-around;
 }
 
-.flip{
+.flipped{
     transform: rotateY(180deg);
+}
+
+.end-game-screen{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255, 0.4);
+}
+
+.end-game-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: 350px;
+    border-radius: 30px;
+    background-color: white;
+}
+
+.end-game-menu h2{
+    font-size: 42px;
+    text-align: center;
+    font-family: 'Rubik Iso', cursive;
+    color: pink;
+}
+
+.hide{
+    display:None;
 }

@@ -1,23 +1,38 @@
 let cardsList = ['img/cards/bobrossparrot.gif', 'img/cards/explodyparrot.gif', 'img/cards/fiestaparrot.gif', 'img/cards/metalparrot.gif', 'img/cards/revertitparrot.gif', 'img/cards/tripletsparrot.gif', 'img/cards/unicornparrot.gif']
-console.log(cardsList)
 
 let turnControl = 0;
 
-let firstChoice;
+let firstChoice = null;
 
-let secondChoice
+let secondChoice = null;
 
-function draftGame(addHide, removeHide){
+function duplicateArray(originalArray){
+    let duplicate = [];
+    for(i=0; i<cardsList.length; i++){
+        duplicate.push(originalArray[i]);
+    }
+    return duplicate
+}
+
+function draftGame(addHide){
+    turnControl = 0;
+    firstChoice = null;
+    secondChoice = null;
+    console.log(cardsList)
+
     document.querySelector(addHide).classList.add("hide");
-    document.querySelector(removeHide).classList.remove("hide");
+
+    if(document.querySelector(".board").classList.contains("hide")){
+        document.querySelector(".board").classList.remove("hide");
+    }
     
     let nCards = prompt("Please, choose how many cards you want to play with.(4-14)")
-
+    
     while(nCards%2 != 0 || nCards < 4 || nCards > 14){
         nCards = prompt("Please, choose an even number between 4 and 14.")
     }
 
-    draft = cardsList;
+    draft = duplicateArray(cardsList);
     
     for(let i=7; i > nCards/2; i--){
         draft = shuffleArray(draft);
@@ -36,7 +51,7 @@ function createCardsDeck(draft){
 
         for(let j=0; j<2; j++){
             cardsHtmlList.push(`
-            <div class='card' onclick='turn(this)'>
+            <div class='card unflipped' onclick='turn(this)'>
                 <div class='card-side back-side'>
                     <img src='${imgSrc}'>
                 </div>
@@ -60,20 +75,22 @@ function mountBoard(cardsHtmlList){
     }
 
     document.querySelector('.board').innerHTML = boardHtml
+    console.log(boardHtml)
 }
 
 function flipCard(choice){
     console.log(choice);
-    choice.classList.toggle("flip");
+    choice.classList.toggle("flipped");
+    choice.classList.toggle("unflipped")
 }
 
 function turn(choice){
-    if (turnControl === 0 && choice.classList.contains("flip") === false){
+    if (turnControl === 0 && choice.classList.contains("flipped") === false){
         flipCard(choice);
         turnControl++;
         firstChoice = choice;
     }
-    else if(turnControl === 1 && choice.classList.contains("flip") === false){
+    else if(turnControl === 1 && choice.classList.contains("flipped") === false){
         flipCard(choice);
         turnControl++;
         secondChoice = choice;
@@ -82,6 +99,7 @@ function turn(choice){
             turnControl = 0;
             firstChoice = null;
             secondChoice = null;
+            endGame();
             return;
         }
 
@@ -103,6 +121,12 @@ function unflipWrongChoice(){
 
     firstChoice = null;
     secondChoice = null;
+}
+
+function endGame(){
+    if(document.querySelector(".unflipped") === null){
+        document.querySelector(".end-game-screen").classList.remove("hide");
+    }
 }
 
 //peguei na internet, randomizador de array
