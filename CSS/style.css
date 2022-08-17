@@ -6,6 +6,11 @@ body{
     display:None;
 }
 
+h1{
+    width: 500px;
+    height: 250px;
+}
+
 .card{
     width:117px;
     height: 146px;

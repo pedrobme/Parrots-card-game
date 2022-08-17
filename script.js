@@ -1,9 +1,3 @@
-let nCards = prompt("Please, choose how many cards you want to play with.(4-14)")
-
-while(nCards%2 != 0 || nCards < 4 || nCards > 14){
-    nCards = prompt("Please, choose an even number between 4 and 14.")
-}
-
 let cardsList = ['img/cards/bobrossparrot.gif', 'img/cards/explodyparrot.gif', 'img/cards/fiestaparrot.gif', 'img/cards/metalparrot.gif', 'img/cards/revertitparrot.gif', 'img/cards/tripletsparrot.gif', 'img/cards/unicornparrot.gif']
 console.log(cardsList)
 
@@ -16,6 +10,13 @@ let secondChoice
 function draftGame(addHide, removeHide){
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(removeHide).classList.remove("hide");
+    
+    let nCards = prompt("Please, choose how many cards you want to play with.(4-14)")
+
+    while(nCards%2 != 0 || nCards < 4 || nCards > 14){
+        nCards = prompt("Please, choose an even number between 4 and 14.")
+    }
+
     draft = cardsList;
     
     for(let i=7; i > nCards/2; i--){
@@ -76,7 +77,17 @@ function turn(choice){
         flipCard(choice);
         turnControl++;
         secondChoice = choice;
-        setTimeout(verifyGuess, 1000);
+
+        if(firstChoice.innerHTML === secondChoice.innerHTML){
+            turnControl = 0;
+            firstChoice = null;
+            secondChoice = null;
+            return;
+        }
+
+        else{
+        setTimeout(unflipWrongChoice, 1000);
+        }
     }
 
     else{
@@ -84,16 +95,11 @@ function turn(choice){
     }
 }
 
-function verifyGuess(){
+function unflipWrongChoice(){
     turnControl = 0;
-    if(firstChoice.innerHTML === secondChoice.innerHTML){
-        return;
-    }
-
-    else{
+    
     flipCard(firstChoice);
     flipCard(secondChoice);
-    }
 
     firstChoice = null;
     secondChoice = null;
