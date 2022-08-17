@@ -1,0 +1,33 @@
+body{
+    background-color: #EEF9BF;
+}
+
+.hide{
+    display:None;
+}
+.card{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    margin:34px;
+}
+.cardBackside{
+    width:100px;
+    height: 100px;
+}
+
+.cardBackside img{
+    width:100%;
+}
+
+.cardFrontside{
+    width:100px;
+    height: 100px;
+}
+
+.cardFrontside img{
+    width: 100%;
+}
