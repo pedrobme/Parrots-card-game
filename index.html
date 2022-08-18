@@ -24,18 +24,31 @@
         <img src="img/cards/tripletsparrot.gif">
         <img src="img/cards/unicornparrot.gif">
       </div>
-      <button class="start-game" onclick="draftGame('.initial-screen','.board')">New Game</button>
+      <p>Select the game mode</p>
+      <div class="game-mode">
+        <button class="start-game" onclick="draftGame('.initial-screen')">One Player</button>
+        <button class="start-game" onclick="draftGameTwoPlayers('.initial-screen')">Two Players</button>
+        </div>
     </div>
 
     <div class="board hide">
     </div>
 
-    <div class="end-game-screen hide">
+    <div class="end-game-screen end-game-1p hide">
       <div class="end-game-menu">
         <h2>Congratulations, you made it!</h2>
         <p class="nMoves"></p>
         <p class="finishTime"></p>
-        <button class="start-game" onclick="draftGame('.end-game-screen')">Restart Game</button>
+        <button class="start-game" onclick="selectGameMode()">Replay</button>
+      </div>
+    </div>
+
+    <div class="end-game-screen end-game-2p hide">
+      <div class="end-game-menu">
+        <h2 id="end-game-msg"></h2>
+        <p class="p1Points"></p>
+        <p class="p2Points"></p>
+        <button class="start-game" onclick="selectGameMode()">Replay</button>
       </div>
     </div>
 

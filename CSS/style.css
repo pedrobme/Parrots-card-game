@@ -16,6 +16,18 @@ h1{
     align-items: center;
 }
 
+.initial-screen p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+}
+
+.game-mode{
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin-top:30px;
+}
+
 .cards-samples{
     width: 100%;
     display: flex;
@@ -151,6 +163,49 @@ h1{
     text-align: center;
     font-family: 'Rubik Iso', cursive;
     color: pink;
+}
+
+
+
+
+
+
+/* 2 PLAYERS STYLE */
+.game-info-2p{
+    display:flex;
+    justify-content: space-around;
+}
+
+.game-info-2p li{
+    font-family: 'Roboto', sans-serif;
+}
+
+.game-info-2p > *{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-1-display{
+    text-align: center;
+    border: 3px solid black;
+    background-color: rgb(0, 168, 0);
+    width:250px;
+    height: 100px;
+    filter: brightness(35%);
+}
+
+.player-2-display{
+    text-align: center;
+    border: 3px solid black;
+    background-color: rgb(255, 28, 28);
+    width:250px;
+    height: 100px;
+    filter: brightness(35%);
+}
+
+.player-turn{
+    filter: brightness(120%)
 }
 
 .hide{
