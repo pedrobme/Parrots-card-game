@@ -6,19 +6,16 @@ let firstChoice = null;
 
 let secondChoice = null;
 
-function duplicateArray(originalArray){
-    let duplicate = [];
-    for(i=0; i<cardsList.length; i++){
-        duplicate.push(originalArray[i]);
-    }
-    return duplicate
-}
+let moves = 0;
 
 function draftGame(addHide){
+    // Redundância necessária para o caso de "restart game"
+    moves = 0;
     turnControl = 0;
     firstChoice = null;
     secondChoice = null;
-    console.log(cardsList)
+    gamestart = setInterval(stopWatch, 1000)
+    document.body.style.overflowY = "auto";
 
     document.querySelector(addHide).classList.add("hide");
 
@@ -33,14 +30,13 @@ function draftGame(addHide){
     }
 
     draft = duplicateArray(cardsList);
+    randomOrdenedDraft = shuffleArray(draft);
     
     for(let i=7; i > nCards/2; i--){
-        draft = shuffleArray(draft);
-        draft.pop();
+        randomOrdenedDraft.pop();
     }
 
-    console.log(draft)
-    createCardsDeck(draft)
+    createCardsDeck(randomOrdenedDraft)
 }
 
 function createCardsDeck(draft){
@@ -52,7 +48,7 @@ function createCardsDeck(draft){
         for(let j=0; j<2; j++){
             cardsHtmlList.push(`
             <div class='card unflipped' onclick='turn(this)'>
-                <div class='card-side back-side'>
+                <div class='card-side'>
                     <img src='${imgSrc}'>
                 </div>
                 <div class='card-side front-side'>
@@ -61,40 +57,55 @@ function createCardsDeck(draft){
             </div>`)
         }
     }
-    console.log(cardsHtmlList);
+
     mountBoard(cardsHtmlList);
 }
 
 function mountBoard(cardsHtmlList){
-    let boardHtml = '';
+    let boardHtml = `
+    <div class='game-info'>
+        <ul>
+            <li>Moves:</li>
+            <li id='moves-number'>0</li>
+        <ul>
+            <li>Time:</li>
+            <li id='min'>0</li>
+            <li>  min</li>
+            <li> : </li>
+            <li id='sec'>-1</li>
+            <li>seconds</li>
+        </ul>
+    </div>
+    <div class='board-cards'>`;
 
     randomOrdenedCards = shuffleArray(cardsHtmlList);
 
     for(let i=0; i<cardsHtmlList.length; i++){
-        boardHtml += randomOrdenedCards[i]
+        boardHtml += randomOrdenedCards[i];
     }
+    boardHtml += `
+    </div>`
 
-    document.querySelector('.board').innerHTML = boardHtml
-    console.log(boardHtml)
-}
-
-function flipCard(choice){
-    console.log(choice);
-    choice.classList.toggle("flipped");
-    choice.classList.toggle("unflipped")
+    document.querySelector('.board').innerHTML = boardHtml;
 }
 
 function turn(choice){
-    if (turnControl === 0 && choice.classList.contains("flipped") === false){
+
+    unflippedCard = choice.classList.contains("unflipped");
+
+    if (turnControl === 0 && unflippedCard === true){
         flipCard(choice);
         turnControl++;
         firstChoice = choice;
     }
-    else if(turnControl === 1 && choice.classList.contains("flipped") === false){
+    else if(turnControl === 1 && unflippedCard === true){
         flipCard(choice);
         turnControl++;
         secondChoice = choice;
+        moves++;
+        document.getElementById('moves-number').innerHTML = moves;
 
+        // Matching cards
         if(firstChoice.innerHTML === secondChoice.innerHTML){
             turnControl = 0;
             firstChoice = null;
@@ -102,15 +113,17 @@ function turn(choice){
             endGame();
             return;
         }
-
+        
+        // Unmatching cards
         else{
         setTimeout(unflipWrongChoice, 1000);
         }
     }
-
-    else{
-        return
     }
+
+function flipCard(choice){
+    choice.classList.toggle("flipped");
+    choice.classList.toggle("unflipped")
 }
 
 function unflipWrongChoice(){
@@ -125,8 +138,29 @@ function unflipWrongChoice(){
 
 function endGame(){
     if(document.querySelector(".unflipped") === null){
+        clearInterval(gamestart)
+        min = document.getElementById('min').innerHTML
+        sec = document.getElementById('sec').innerHTML
+
         document.querySelector(".end-game-screen").classList.remove("hide");
+        document.body.style.overflowY = "hidden";
+
+        document.querySelector(".nMoves").innerHTML = `You completed the game in: ${moves} moves!`;
+        document.querySelector(".finishTime").innerHTML = `and needed ${min} minutes and ${sec} seconds to do it!`;
     }
+}
+
+
+
+
+//Funções acessórias:
+
+function duplicateArray(originalArray){
+    let duplicate = [];
+    for(i=0; i<cardsList.length; i++){
+        duplicate.push(originalArray[i]);
+    }
+    return duplicate
 }
 
 //peguei na internet, randomizador de array
@@ -139,4 +173,18 @@ function shuffleArray(myArray){
       }
       
       return myArray;
+}
+
+function stopWatch(){
+    min = Number(document.getElementById('min').innerHTML);
+    sec = Number(document.getElementById('sec').innerHTML);
+
+    sec++;
+    if(sec > 59){
+        sec=0;
+        min++;
+    }
+
+    document.getElementById('min').innerHTML = min;
+    document.getElementById('sec').innerHTML = sec;
 }

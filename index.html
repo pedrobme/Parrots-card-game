@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <title>Título da página</title>
+    <title>Parrots card game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css" class="css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik+Iso&family=Silkscreen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik+Iso&family=Silkscreen&display=swap" rel="stylesheet">
   </head>
   
   <body>
@@ -33,8 +33,9 @@
     <div class="end-game-screen hide">
       <div class="end-game-menu">
         <h2>Congratulations, you made it!</h2>
-        <p>Your time: </p>
-        <button class="start-game" onclick="draftGame('.end-game-screen')">New Game</button>
+        <p class="nMoves"></p>
+        <p class="finishTime"></p>
+        <button class="start-game" onclick="draftGame('.end-game-screen')">Restart Game</button>
       </div>
     </div>
 
