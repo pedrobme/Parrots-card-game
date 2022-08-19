@@ -17,7 +17,7 @@ function selectGameMode(){
     document.querySelector('.board').classList.add("hide");
     document.querySelector('.end-game-1p').classList.add("hide");
     document.querySelector('.end-game-2p').classList.add("hide");
-    document.querySelector(".game-title").classList.remove("hide-title-mobile-version");
+    document.querySelector(".game-title").classList.remove("hide-mobile-version");
     document.querySelector(".board").classList.remove("margin-board-2p-mobile")
 }
 
@@ -40,7 +40,7 @@ function draftGame(InitialScreen){
     // Troca de telas
     document.querySelector(InitialScreen).classList.add("hide");
     document.querySelector(".board").classList.remove("hide");
-    document.querySelector(".game-title").classList.add("hide-title-mobile-version");
+    document.querySelector(".game-title").classList.add("hide-mobile-version");
     
     // Configuração do jogo
     let nCards = prompt("Please, choose how many cards you want to play with.(4-14)");
@@ -190,7 +190,7 @@ function draftGameTwoPlayers(addHide){
     document.body.style.overflowY = "auto";
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(".board").classList.remove("hide");
-    document.querySelector(".game-title").classList.add("hide-title-mobile-version")
+    document.querySelector(".game-title").classList.add("hide-mobile-version")
     document.querySelector(".board").classList.add("margin-board-2p-mobile")
     
     // Configuração de jogo
