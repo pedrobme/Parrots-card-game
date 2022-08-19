@@ -1,5 +1,9 @@
 body{
     background-color: #EEF9BF;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -10,6 +14,7 @@ h1{
 }
 
 .initial-screen{
+    width: 100%;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -18,6 +23,7 @@ h1{
 
 .initial-screen p{
     font-family: 'Roboto', sans-serif;
+    text-align: center;
     font-size: 30px;
 }
 
@@ -82,8 +88,8 @@ h1{
 }
 
 .card-side img{
-    width: 100px;
-    height: 100px;
+    width: 82.6%;
+    height: 66.6%;
 }
 
 .front-side{
@@ -92,7 +98,7 @@ h1{
 }
 
 .front-side:hover{
-    filter: brightness(110%)
+    filter: brightness(115%);
 }
 
 .flipped{
@@ -100,7 +106,9 @@ h1{
 }
 
 .board{
-    position:relative
+    position:relative;
+    width:100%;
+    position:relative;
 }
 
 .board-cards{
@@ -110,20 +118,18 @@ h1{
 }
 
 .game-info{
-    width:80%;
+    width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-.board ul{
+.game-info > *{
     display:flex;
 
     list-style-type: none;
     background-color: #EEF9BF;
     color:black;
     font-size: 30px;
-    width:200px;
-    height: 40px;
 }
 
 .end-game-screen{
@@ -155,6 +161,7 @@ h1{
 
 .end-game-menu > p{
     font-family: 'Roboto', sans-serif;
+    text-align: center;
     font-size: 20px;
 }
 
@@ -172,13 +179,13 @@ h1{
 
 /* 2 PLAYERS STYLE */
 .game-info-2p{
-    display:flex;
+    width: 100%;
+    display: flex;
     justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
 }
 
-.game-info-2p li{
-    font-family: 'Roboto', sans-serif;
-}
 
 .game-info-2p > *{
     display:flex;
@@ -186,12 +193,12 @@ h1{
     align-items: center;
 }
 
+
 .player-1-display{
     text-align: center;
     border: 3px solid black;
-    background-color: rgb(0, 168, 0);
+    background-color: rgb(0, 233, 0);
     width:250px;
-    height: 100px;
     filter: brightness(35%);
 }
 
@@ -200,14 +207,90 @@ h1{
     border: 3px solid black;
     background-color: rgb(255, 28, 28);
     width:250px;
-    height: 100px;
-    filter: brightness(35%);
+    filter: brightness(25%);
 }
 
 .player-turn{
-    filter: brightness(120%)
+    filter: brightness(120%);
 }
 
 .hide{
     display:None;
 }
+
+
+@media (max-width: 600px){
+    h1{
+       font-size: 50px; 
+    }
+    
+    .end-game-screen{
+        width:100%;
+        height:100%;
+    }
+
+    .end-game-menu{
+        width: 100%;
+        border-radius:0;
+    }
+
+    .player-1-display{
+        position:fixed;
+        width:100%;
+        top:0;
+        z-index:1;
+    }
+
+    .player-2-display{
+        position:fixed;
+        width:100%;
+        bottom:0;
+        z-index:1;
+    }
+
+    .margin-board-2p-mobile{
+        margin-block:100px;
+    }
+
+    .hide-title-mobile-version{
+        display: none;
+    }
+
+    .game-mode{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 200px;
+        margin-top:15px;
+    }
+
+    .start-game{
+        width: 150px;
+        height: 50px;
+        background-color: green;
+        color:white;
+        border-radius: 8px;
+        margin:15px;
+    }
+
+    .game-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Redução de 30% no tamanho da carta */
+    .card{
+        width:81.9px;
+        height: 102.2px;
+        margin:23.8px;
+   
+    }
+
+    /*  */
+    .game-info-2p{
+        font-size: 15px;
+    }
+  }

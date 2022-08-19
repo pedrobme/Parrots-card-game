@@ -1,12 +1,27 @@
-let cardsList = ['img/cards/bobrossparrot.gif', 'img/cards/explodyparrot.gif', 'img/cards/fiestaparrot.gif', 'img/cards/metalparrot.gif', 'img/cards/revertitparrot.gif', 'img/cards/tripletsparrot.gif', 'img/cards/unicornparrot.gif']
 
-let turnControl = 0;
+let cardsList = ['img/cards/bobrossparrot.gif', 'img/cards/explodyparrot.gif', 'img/cards/fiestaparrot.gif', 'img/cards/metalparrot.gif', 'img/cards/revertitparrot.gif', 'img/cards/tripletsparrot.gif', 'img/cards/unicornparrot.gif'],
 
-let firstChoice = null;
+turnControl = 0,
 
-let secondChoice = null;
+firstChoice = null,
 
-let moves = 0;
+secondChoice = null,
+
+moves = 0;
+
+
+// Selecionar modo de jogo
+function selectGameMode(){
+    document.body.style.overflowY = "auto";
+    document.querySelector('.initial-screen').classList.remove("hide");
+    document.querySelector('.board').classList.add("hide");
+    document.querySelector('.end-game-1p').classList.add("hide");
+    document.querySelector('.end-game-2p').classList.add("hide");
+    document.querySelector(".game-title").classList.remove("hide-title-mobile-version");
+}
+
+
+
 
 // Modo 1 player
 
@@ -18,17 +33,19 @@ function draftGame(InitialScreen){
     secondChoice = null;
     
     // Game start
-    gamestart = setInterval(stopWatch, 1000)
+    gamestart = setInterval(stopWatch, 1000);
     document.body.style.overflowY = "auto";
 
+    // Troca de telas
     document.querySelector(InitialScreen).classList.add("hide");
-
     document.querySelector(".board").classList.remove("hide");
+    document.querySelector(".game-title").classList.add("hide-title-mobile-version");
     
-    let nCards = prompt("Please, choose how many cards you want to play with.(4-14)")
+    // Configuração do jogo
+    let nCards = prompt("Please, choose how many cards you want to play with.(4-14)");
     
     while(nCards%2 != 0 || nCards < 4 || nCards > 14){
-        nCards = prompt("Please, choose an even number between 4 and 14.")
+        nCards = prompt("Please, choose an even number between 4 and 14.");
     }
 
     draft = duplicateArray(cardsList);
@@ -38,7 +55,7 @@ function draftGame(InitialScreen){
         randomOrdenedDraft.pop();
     }
 
-    createCards(randomOrdenedDraft)
+    createCards(randomOrdenedDraft);
 }
 
 function createCards(draft){
@@ -56,7 +73,7 @@ function createCards(draft){
                 <div class='card-side front-side'>
                     <img src='img/front.png'>
                 </div>
-            </div>`)
+            </div>`);
         }
     }
 
@@ -66,28 +83,24 @@ function createCards(draft){
 function mountBoard(cardsHtmlList){
     let boardHtml = `
     <div class='game-info'>
-        <ul>
-            <li>Moves:</li>
-            <li id='moves-number'>0</li>
-        </ul>
-        <ul>
-            <li>Time:</li>
-            <li id='min'>0</li>
-            <li>  min</li>
-            <li> : </li>
-            <li id='sec'>-1</li>
-            <li>seconds</li>
-        </ul>
+        <div>
+            <p>Moves:</p>
+            <p id='moves-number'>0</p>
+        </div>
+        <div>
+            <p>Time: <span id='min'>0</span> min<span id='sec'>-1</span> sec</p>
+        </div>
     </div>
     <div class='board-cards'>`;
 
     randomOrdenedCards = shuffleArray(cardsHtmlList);
 
-    for(let i=0; i<cardsHtmlList.length; i++){
+    for(let i=0; i<randomOrdenedCards.length; i++){
         boardHtml += randomOrdenedCards[i];
     }
+
     boardHtml += `
-    </div>`
+    </div>`;
 
     document.querySelector('.board').innerHTML = boardHtml;
 }
@@ -136,9 +149,9 @@ function unflipWrongChoice(){
 
 function endGame(){
     if(document.querySelector(".unflipped") === null){
-        clearInterval(gamestart)
-        min = document.getElementById('min').innerHTML
-        sec = document.getElementById('sec').innerHTML
+        clearInterval(gamestart);
+        min = document.getElementById('min').innerHTML;
+        sec = document.getElementById('sec').innerHTML;
 
         document.querySelector(".end-game-1p").classList.remove("hide");
         document.body.style.overflowY = "hidden";
@@ -148,13 +161,6 @@ function endGame(){
     }
 }
 
-function selectGameMode(){
-    document.body.style.overflowY = "auto";
-    document.querySelector('.initial-screen').classList.remove("hide");
-    document.querySelector('.board').classList.add("hide");
-    document.querySelector('.end-game-1p').classList.add("hide")
-    document.querySelector('.end-game-2p').classList.add("hide")
-}
 
 
 
@@ -162,7 +168,7 @@ function selectGameMode(){
 
 
 
-// MODO 2 PLAYERS
+// Modo 2 players
 
 let playerTurn = 'first player';
 let playerOnePoints = 0;
@@ -170,6 +176,7 @@ let playerTwoPoints = 0;
 
 function draftGameTwoPlayers(addHide){
     // Redundância necessária para o caso de "restart game"
+
     turnControl = 0;
     firstChoice = null;
     secondChoice = null;
@@ -177,15 +184,20 @@ function draftGameTwoPlayers(addHide){
     playerOnePoints = 0;
     playerTwoPoints = 0;
 
-    document.body.style.overflowY = "auto";
+    // Trocas de telas
 
+    document.body.style.overflowY = "auto";
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(".board").classList.remove("hide");
+    document.querySelector(".game-title").classList.add("hide-title-mobile-version")
+    document.querySelector(".board").classList.add("margin-board-2p-mobile")
     
-    let nCards = prompt("Please, choose how many cards you want to play with.(4-14)")
+    // Configuração de jogo
+
+    let nCards = prompt("Please, choose how many cards you want to play with.(4-14)");
     
     while(nCards%2 != 0 || nCards < 4 || nCards > 14){
-        nCards = prompt("Please, choose an even number between 4 and 14.")
+        nCards = prompt("Please, choose an even number between 4 and 14.");
     }
 
     draft = duplicateArray(cardsList);
@@ -195,7 +207,7 @@ function draftGameTwoPlayers(addHide){
         randomOrdenedDraft.pop();
     }
 
-    createCardsTwoPlayers(randomOrdenedDraft)
+    createCardsTwoPlayers(randomOrdenedDraft);
 }
 
 function createCardsTwoPlayers(draft){
@@ -213,7 +225,7 @@ function createCardsTwoPlayers(draft){
                 <div class='card-side front-side'>
                     <img src='img/front.png'>
                 </div>
-            </div>`)
+            </div>`);
         }
     }
 
@@ -224,14 +236,10 @@ function mountBoardTwoPlayers(cardsHtmlList){
 
     let boardHtml = `
     <div class='game-info-2p'>
-        <ul>
-            <li id="p1turn" class="player-1-display player-turn">Player 1</li>
-            <li id='p1points'>Points: 0</li>
-        </ul>
-        <ul>
-            <li id="p2turn" class="player-2-display">Player2</li>
-            <li id='p2points'>Points: 0</li>
-        <ul>
+        <div id="p1turn" class="player-1-display player-turn"><p>Player 1</p><p id='p1points'>Points: 0</p>
+        </div>
+        <div id="p2turn" class="player-2-display"><p>Player2</p><p id='p2points'>Points: 0</p>
+        </div>
     </div>
     <div class='board-cards'>`;
 
@@ -240,8 +248,9 @@ function mountBoardTwoPlayers(cardsHtmlList){
     for(let i=0; i<cardsHtmlList.length; i++){
         boardHtml += randomOrdenedCards[i];
     }
+
     boardHtml += `
-    </div>`
+    </div>`;
 
     document.querySelector('.board').innerHTML = boardHtml;
 }
@@ -286,14 +295,14 @@ function unflipWrongChoiceTwoPlayers(){
     
     if(playerTurn === 'first player'){
         playerTurn = 'second player';
-        document.getElementById("p1turn").classList.remove("player-turn")
-        document.getElementById("p2turn").classList.add("player-turn")
+        document.getElementById("p1turn").classList.remove("player-turn");
+        document.getElementById("p2turn").classList.add("player-turn");
         
     }
     else{
         playerTurn = 'first player';
-        document.getElementById("p1turn").classList.add("player-turn")
-        document.getElementById("p2turn").classList.remove("player-turn")
+        document.getElementById("p1turn").classList.add("player-turn");
+        document.getElementById("p2turn").classList.remove("player-turn");
     }
 
     console.log(playerTurn)
@@ -304,11 +313,11 @@ function unflipWrongChoiceTwoPlayers(){
 function markPoint(player){
     if(player === 'first player'){
         playerOnePoints++;
-        document.getElementById('p1points').innerHTML = `Points: ${playerOnePoints}`
+        document.getElementById('p1points').innerHTML = `Points: ${playerOnePoints}`;
     }
     else{
         playerTwoPoints++;
-        document.getElementById('p2points').innerHTML = `Points: ${playerTwoPoints}`
+        document.getElementById('p2points').innerHTML = `Points: ${playerTwoPoints}`;
     }
 }
 
