@@ -18,6 +18,7 @@ function selectGameMode(){
     document.querySelector('.end-game-1p').classList.add("hide");
     document.querySelector('.end-game-2p').classList.add("hide");
     document.querySelector(".game-title").classList.remove("hide-title-mobile-version");
+    document.querySelector(".board").classList.remove("margin-board-2p-mobile")
 }
 
 
