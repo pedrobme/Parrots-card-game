@@ -85,11 +85,10 @@ function mountBoard(cardsHtmlList){
     let boardHtml = `
     <div class='game-info'>
         <div>
-            <p>Moves:</p>
-            <p id='moves-number'>0</p>
+            <p>Moves: <span id='moves-number'>0</span></p>
         </div>
         <div>
-            <p>Time: <span id='min'>0</span> min<span id='sec'>-1</span> sec</p>
+            <p>Time: <span id='min'>0</span> min <span id='sec'>-1</span> sec</p>
         </div>
     </div>
     <div class='board-cards'>`;
