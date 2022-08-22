@@ -28,8 +28,11 @@
       <div class="game-mode">
         <button class="start-game" onclick="draftGame('.initial-screen')">One Player</button>
         <button class="start-game" onclick="draftGameTwoPlayers('.initial-screen')">Two Players</button>
+        <button class="start-game" onclick="selectTime('.initial-screen')">Time Trial</button>
         </div>
     </div>
+    
+    <div class="game-info-time-trial hide"></div>
 
     <div class="board hide">
     </div>
@@ -48,6 +51,26 @@
         <h2 id="end-game-msg"></h2>
         <p class="p1Points"></p>
         <p class="p2Points"></p>
+        <button class="start-game" onclick="selectGameMode()">Replay</button>
+      </div>
+    </div>
+
+    <div class="time-select-screen hide">
+      <p>Time trial</p>
+      <div class="time-options">
+        <button class="start-game" onclick="setTimeTrialConfig(15)">15 seconds</button>
+        <button class="start-game" onclick="setTimeTrialConfig(30)">30 seconds</button>
+        <button class="start-game" onclick="setTimeTrialConfig(45)">45 seconds</button>
+        <button class="start-game" onclick="setTimeTrialConfig(60)">60 seconds</button>
+        <button class="start-game" onclick="setTimeTrialConfig(90)">90 seconds</button>
+        <button class="start-game" onclick="setTimeTrialConfig(120)">120 seconds</button>
+      </div>
+    </div>
+
+    <div class="end-game-screen end-game-time-trial hide">
+      <div class="end-game-menu">
+        <h2 id="end-game-msg-time-trial"></h2>
+        <p class="wins"></p>
         <button class="start-game" onclick="selectGameMode()">Replay</button>
       </div>
     </div>

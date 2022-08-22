@@ -4,13 +4,22 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-block: auto;
+    width:100vw;
 }
 
+p{  
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    margin-block:15px;
+}
 
 h1{
     font-size: 80px;
     text-align: center;
     font-family: 'Silkscreen', cursive;
+    margin-block: 25px;
 }
 
 .initial-screen{
@@ -21,17 +30,15 @@ h1{
     align-items: center;
 }
 
-.initial-screen p{
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    font-size: 30px;
-}
-
 .game-mode{
     display: flex;
-    justify-content: space-around;
-    width: 400px;
+    width: 100%;
+    justify-content: center;
     margin-top:30px;
+}
+
+.game-mode > *{
+    margin-inline-start: 40px;
 }
 
 .cards-samples{
@@ -65,7 +72,7 @@ h1{
     width:117px;
     height: 146px;
 
-    margin:34px;
+    margin:28px;
 
     transition: all .5s;
     transform-style: preserve-3d;
@@ -159,12 +166,10 @@ h1{
     height: 500px;
     
     border-radius: 30px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 }
 
 .end-game-menu > p{
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
     font-size: 20px;
 }
 
@@ -172,7 +177,7 @@ h1{
     font-size: 42px;
     text-align: center;
     font-family: 'Rubik Iso', cursive;
-    color: pink;
+    color: black;
 }
 
 
@@ -187,6 +192,7 @@ h1{
     justify-content: space-around;
     font-family: 'Roboto', sans-serif;
     font-size: 22px;
+    margin-block:15px;
 }
 
 
@@ -217,11 +223,7 @@ h1{
     filter: brightness(120%);
 }
 
-.hide{
-    display:None;
-}
-
-
+/* Mobile Style */
 @media (max-width: 600px){
     h1{
        font-size: 50px; 
@@ -254,10 +256,6 @@ h1{
 
     .margin-board-2p-mobile{
         margin-block:100px;
-    }
-
-    .hide-mobile-version{
-        display: none;
     }
 
     .game-mode{
@@ -293,8 +291,86 @@ h1{
    
     }
 
-    /*  */
-    .game-info-2p{
+    /*font size */
+    .game-info-2p p{
         font-size: 15px;
     }
   }
+
+
+
+  
+  /* Time Trial Style */
+
+  .time-select-screen{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .time-options{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 550px;
+  }
+
+  .time-options > *{
+    margin-block:20px;
+  }
+  
+  .game-info-time-trial{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .clock{
+    width: 100vw;
+    height: 40px;
+    background-color:#86ff00;
+    animation-name: timer;
+    animation-timing-function: linear;
+  }
+
+  .game-info-time-trial > img{
+    width:50px;
+    height: 50px;
+  }
+
+  .clock-15{
+    animation-duration: 15s;
+  }
+
+  .clock-30{
+    animation-duration: 30s;
+  }
+
+  .clock-45{
+    animation-duration: 45s;
+  }
+  
+  .clock-60{
+    animation-duration: 60s;
+  }
+
+  .clock-90{
+    animation-duration: 90s;
+  }
+
+  .clock-120{
+    animation-duration: 120s;
+  }
+
+  @keyframes timer {
+    to{
+    transform: scaleX(0);
+    }
+    100% {background-color: red;}
+  }
+
+  .hide{
+    display:None;
+}
