@@ -19,7 +19,7 @@ h1{
     font-size: 80px;
     text-align: center;
     font-family: 'Silkscreen', cursive;
-    margin-block: 25px;
+    margin-block: 15px;
 }
 
 .initial-screen{
@@ -124,7 +124,7 @@ h1{
     display:flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    max-width:1048px;
+    max-width: 1280px;
 }
 
 .game-info{
@@ -281,6 +281,10 @@ h1{
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .hide-2p-mobile{
+        display: none;
     }
 
     /* Redução de 30% no tamanho da carta */

@@ -57,6 +57,8 @@ function selectGameMode(){
     document.querySelector('.initial-screen').classList.remove("hide");
     document.querySelector(".game-title").classList.remove("hide");
     document.querySelector(".board").classList.remove("margin-board-2p-mobile");
+    document.querySelector(".game-title").classList.remove("hide-2p-mobile");
+    document.querySelector(".game-title").classList.remove("hide");
 
     // add hide
     document.querySelector('.board').classList.add("hide");
@@ -73,7 +75,6 @@ function draftGame(InitialScreen){
     document.body.style.overflowY = "auto";
 
     // Trocas de telas
-    document.querySelector(".game-title").classList.add("hide");
     document.querySelector(InitialScreen).classList.add("hide");
 
     document.querySelector(".board").classList.remove("hide");
@@ -214,7 +215,7 @@ function draftGameTwoPlayers(addHide){
 
     // Trocas de telas
     document.body.style.overflowY = "auto";
-    document.querySelector(".game-title").classList.add("hide");
+    document.querySelector(".game-title").classList.add("hide-2p-mobile");
     document.querySelector(addHide).classList.add("hide");
     document.querySelector(".board").classList.add("margin-board-2p-mobile")
 
@@ -441,7 +442,6 @@ function draftGameTimeTrial(timeSelectScreen, nCards){
     document.body.style.overflowY = "auto";
 
     // Troca de telas
-    document.querySelector(".game-title").classList.add("hide");
     document.querySelector(timeSelectScreen).classList.add("hide");
     document.querySelector(".board").classList.remove("hide");
     
