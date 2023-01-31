@@ -1,1 +1,3 @@
-# projeto4-parrotscardgame
+# JS Card-game
+
+Pure Javascript card game
